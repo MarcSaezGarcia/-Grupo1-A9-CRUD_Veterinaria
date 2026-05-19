@@ -1,15 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perriatra Grupo 1</title>
+    <title>Registro de Personal - Perriatra</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="../estilos/style.css">
-    <script defer src="../js/script.js"></script>
 </head>
-<body>
-    <div class="contenedor-sign_in">
-        
+<body class="bg-light">
+    
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                
+                <div class="card shadow-lg border-0" style="border-radius: 16px;">
+                    <div class="card-body p-5">
+                        
+                        <div class="text-center mb-4">
+                            <h2 class="fw-bold text-dark mb-1">🐾 Nuevo Trabajador</h2>
+                            <p class="text-muted small">Alta de credenciales para el personal de la clínica</p>
+                        </div>
+                        
+                        <form action="../scripts/registro_usu.php" method="POST" id="formRegistro" novalidate>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary">Nombre Completo</label>
+                                <input type="text" name="nombre" id="reg_nom" class="form-control p-2.5" 
+                                       placeholder="Ej. Carlos Martínez Gómez" onblur="validar(this, 'texto')" required>
+                                <span id="err-reg_nom" class="error-msg text-danger small mt-1 d-block"></span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary">Correo Electrónico</label>
+                                <input type="email" name="email" id="reg_mail" class="form-control p-2.5" 
+                                       placeholder="ejemplo@clinicaperriatra.com" onblur="validar(this, 'email')" required>
+                                <span id="err-reg_mail" class="error-msg text-danger small mt-1 d-block"></span>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-secondary">Contraseña</label>
+                                <input type="password" name="password" id="reg_pass" class="form-control p-2.5" 
+                                       placeholder="••••••••" onblur="validar(this, 'password')" required>
+                                <span id="err-reg_pass" class="error-msg text-danger small mt-1 d-block"></span>
+                                <div class="form-text text-muted small mt-2">
+                                    ⚠️ Requisitos: Mínimo 8 caracteres, incluyendo al menos una letra mayúscula y un dígito numérico.
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-success w-100 py-2 fw-semibold">
+                                Crear Cuenta de Empleado
+                            </button>
+                            
+                            <div class="text-center mt-4 border-top pt-3">
+                                <p class="small text-muted mb-0">
+                                    ¿Ya dispones de un perfil activo? <br>
+                                    <a href="login.php" class="text-success fw-semibold text-decoration-none">Acceder al panel</a>
+                                </p>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
     </div>
+    
+    <script src="../js/script.js"></script>
 </body>
 </html>

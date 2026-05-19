@@ -2,6 +2,5 @@
 ## CRUD “Perriatra🐾” 
 - Marc Sáez
 - Juan Ruíz
-- Enrica García
+- Enric García
 - Illias Garbaui
-- Sergio Sanchez

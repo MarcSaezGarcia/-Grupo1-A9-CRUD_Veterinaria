@@ -3,7 +3,7 @@
 // Datos de conexión a la base de datos
 $servername = "localhost";
 $username   = "root";
-$password   = "";
-$dbname     = "bd_festival";
+$password   = "8040"; // En mi ordenador tengo contraseña del root importante cambiar!!
+$dbname     = "perriatra";
 
 ?>

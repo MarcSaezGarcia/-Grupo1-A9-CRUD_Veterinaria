@@ -1,0 +1,182 @@
+/* Paleta de colores */
+:root {
+    --primary-color: #5d7a5c;   /* Verde bosque */
+    --secondary-color: #a4b494; /* Verde suave */
+    --accent-color: #e9c46a;    /* Tono arena / amarillo */
+    --bg-color: #f8f9fa;        /* Fondo gris claro */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: #333;
+    font-size: 16px; /* Base sólida para legibilidad */
+}
+
+/* COMPONENTES INTERFACES (NAVBAR Y BOTONES) */
+/* Navbar con estilo personalizado */
+.navbar {
+    background-color: var(--primary-color) !important;
+    border-bottom: 4px solid var(--accent-color);
+    padding: 1rem; /* Más espacio en móviles */
+}
+
+/* Decoración temática animal en el menú */
+.navbar-brand::before {
+    content: "🐾 ";
+}
+
+/* Estilo para los botones de "Acciones" (Editar / Borrar) */
+.btn-sm {
+    border-radius: 8px;
+    margin: 4px 2px; /* Margen vertical para evitar que se peguen en responsive */
+}
+
+/* REQUISITOS DEL PDF: ERRORES, TABLAS Y CONTADORES */
+/* Mensajes de error en rojo (Requisito estricto de validación) */
+.error-msg {
+    color: #dc3545;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Efecto hover elegante para las filas de las tablas */
+.table-hover tbody tr:hover {
+    background-color: rgba(164, 180, 148, 0.2);
+    transition: 0.3s;
+}
+
+/* Estilo para el contador de resultados en el buscador de Mascotas */
+.badge-count {
+    background-color: var(--accent-color);
+    color: #000;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    display: inline-block; /* Evita deformaciones */
+}
+
+/* Evita que textos largos (como el Chip) rompan la tabla antes de tiempo */
+.table th, .table td {
+    white-space: nowrap; 
+    font-size: 0.9rem;
+    padding: 8px 4px;
+}
+
+/* Responsive */
+
+/* Dispositivos Medianos (Tablets - menos de 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px; /* Ajuste sutil de fuente general */
+    }
+
+    /* Asegurar scroll horizontal limpio en tablas si es necesario */
+    .table-responsive {
+        border: 0;
+        margin-bottom: 15px;
+    }
+
+    /* Botones más grandes para interactuar mejor con los dedos */
+    .btn-sm {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Dispositivos Pequeños (Móviles estándar - menos de 576px) */
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.2rem; /* Evita que el título se rompa en dos líneas */
+    }
+
+    /* El contador ocupa todo el ancho en móviles pequeños */
+    .badge-count {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        width: 100%; 
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    /* Los elementos de formulario se expanden al 100% para usabilidad */
+    input, select, textarea {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}
+
+/* OPTIMIZACIÓN RESPONSIVE AVANZADA (VISTA CARD / TARJETA) */
+/* Transforma la tabla en bloques independientes en móviles de menos de 600px */
+@media (max-width: 600px) {
+    
+    /* Forzamos a que toda la estructura de la tabla se comporte como bloques apilados */
+    .table-responsive table, 
+    .table-responsive thead, 
+    .table-responsive tbody, 
+    .table-responsive th, 
+    .table-responsive td, 
+    .table-responsive tr { 
+        display: block; 
+    }
+    
+    /* Escondemos el encabezado superior original sacándolo de la pantalla */
+    .table-responsive thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    /* Cada fila de la tabla pasa a ser una tarjeta (Card) visual */
+    .table-responsive tr { 
+        border: 1px solid #ccc; 
+        margin-bottom: 15px;
+        border-radius: 8px;
+        background: #fff;
+        padding: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    /* Ajustamos el padding de las celdas para dejar espacio a los títulos inyectados */
+    .table-responsive td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 45% !important; /* Espacio para la etiqueta izquierda */
+        text-align: left;
+        white-space: normal;           /* Permitir saltos de línea en textos largos */
+    }
+    
+    .table-responsive td:last-child {
+        border-bottom: 0;
+    }
+    
+    /* Configuración de las etiquetas virtuales a la izquierda */
+    .table-responsive td:before { 
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        width: 40%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+    
+    /* Inyección de los nombres de columnas mediante selectores CSS en orden */
+    .table-responsive td:nth-of-type(1):before { content: "Chip:"; }
+    .table-responsive td:nth-of-type(2):before { content: "Nombre:"; }
+    .table-responsive td:nth-of-type(3):before { content: "Especie:"; }
+    .table-responsive td:nth-of-type(4):before { content: "Raza:"; }
+    .table-responsive td:nth-of-type(5):before { content: "Propietario:"; }
+    .table-responsive td:nth-of-type(6):before { content: "Acciones:"; }
+
+    /* Ajuste para que los botones de Editar y Borrar se vean perfectamente alineados en móviles */
+    .btn-sm {
+        width: 45%;
+        display: inline-block;
+        text-align: center;
+        margin: 2px !important;
+    }
+}
